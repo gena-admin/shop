@@ -1,0 +1,12 @@
+= form_for :gena, :url => process_import_products_path, :html => { :multipart => true } do |f|
+  /- if @product.errors.any?
+  /  #error_explanation
+  /    h2 = "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+  /    ul
+  /      - @product.errors.full_messages.each do |message|
+  /        li = message
+
+  .field
+    = f.label :file
+    = f.file_field :file
+  .actions = f.submit

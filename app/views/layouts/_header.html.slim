@@ -5,7 +5,7 @@ nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
         span.sr-only  = link_to 'Serials', 'serials_path', class: 'cp(serials_path)'
 
         - if user_signed_in?
-          span.icon-bar = link_to 'Favorites', root_path, class: 'cp(favorites_path)'
+          span.icon-bar = link_to 'Products', products_path, class: 'cp(favorites_path)'
           span.icon-bar = link_to 'Preferences', '#'
           span.icon-bar = link_to 'Logout', destroy_user_session_path, method: :delete
         - else
@@ -15,11 +15,11 @@ nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
 
     .collapse.navbar-collapse.navbar-right id="#bs-example-navbar-collapse-1"
       ul.nav.navbar-nav
-        li = link_to 'Serials', 'serials_path', class: 'cp(serials_path)'
+        li = link_to 'Product', products_path, class: 'cp(serials_path)'
         li = link_to 'Schedule', '#', class: 'cp('')'
 
         - if user_signed_in?
-          li = link_to 'Favorites', 'favorites_path', class: 'cp(favorites_path)'
+          li = link_to 'Import from JSON file', import_products_products_path, class: 'cp(favorites_path)'
           li.dropdown
             a.dropdown-toggle href="#" data-toggle="dropdown"
               = current_user.email
