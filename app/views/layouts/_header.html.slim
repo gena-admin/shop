@@ -1,0 +1,32 @@
+nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
+  .container
+    .navbar-header
+      button.navbar-toggle.pull-right type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        span.sr-only  = link_to 'Serials', 'serials_path', class: 'cp(serials_path)'
+
+        - if user_signed_in?
+          span.icon-bar = link_to 'Favorites', root_path, class: 'cp(favorites_path)'
+          span.icon-bar = link_to 'Preferences', '#'
+          span.icon-bar = link_to 'Logout', destroy_user_session_path, method: :delete
+        - else
+          span.icon-bar = link_to 'Login', new_user_session_path
+
+    = link_to 'Shop', root_path, class: 'navbar-brand'
+
+    .collapse.navbar-collapse.navbar-right id="#bs-example-navbar-collapse-1"
+      ul.nav.navbar-nav
+        li = link_to 'Serials', 'serials_path', class: 'cp(serials_path)'
+        li = link_to 'Schedule', '#', class: 'cp('')'
+
+        - if user_signed_in?
+          li = link_to 'Favorites', 'favorites_path', class: 'cp(favorites_path)'
+          li.dropdown
+            a.dropdown-toggle href="#" data-toggle="dropdown"
+              = current_user.email
+              b.caret
+            ul.dropdown-menu
+              li = link_to 'Logout', destroy_user_session_path, method: :delete
+              li.divider
+              li = link_to 'Preferences', '#'
+        - else
+          li = link_to 'Login', new_user_session_path

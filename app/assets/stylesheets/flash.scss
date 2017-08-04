@@ -1,0 +1,23 @@
+#flash-section {
+  position: fixed;
+  top: 50px;
+  right: 150px;
+  width: 250px;
+  opacity: 0.6;
+
+  .alert {
+    font-size: 12px;
+  }
+
+  .alert-success {
+    background: #090808;
+    color: #FFF;
+    text-align: left;
+    border-radius: 7px;
+    margin-bottom: 10px;
+  }
+
+  .close {
+    color: #FFF;
+  }
+}
