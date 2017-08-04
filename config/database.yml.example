@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: shop_development
+
+test:
+  <<: *default
+  database: shop_test
+
+production:
+  <<: *default
+  database: shop_production
+  username: jarvis
+  password: <%= ENV['JARVIS_DATABASE_PASSWORD'] %>
