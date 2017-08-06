@@ -22,7 +22,7 @@ $( document ).ready(function() {
 
                 modal.find('.name').text(response['name']);
                 modal.find('.brand').text(response['brand']);
-                modal.find('.sku').text(response['sku']);
+                modal.find('.model').text(response['model']);
                 modal.find('.price').text(response['price']);
                 modal.find('.desc').text(response['desc']);
 

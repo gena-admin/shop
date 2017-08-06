@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
+  scope :customers, -> { where(role: 'user') }
 
   after_create :send_welcome_mail
 
