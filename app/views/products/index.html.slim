@@ -1,31 +1,23 @@
 h1 Listing products
 
-table
-  thead
-    tr
-      th Name
-      th Brand
-      th Model
-      th Sku
-      th Price
-      th Desc
-      th
-      th
-      th
-
-  tbody
-    - @products.each do |product|
-      tr
-        td = product.name
-        td = product.brand
-        td = product.model
-        td = product.sku
-        td = product.price
-        td = product.desc
-        td = link_to 'Show', product
-        td = link_to 'Edit', edit_product_path(product)
-        td = link_to 'Destroy', product, data: { confirm: 'Are you sure?' }, method: :delete
-
+.row.row-offcanvas.row-offcanvas-right
+  .col-md-12
+    .row
+      - @products.each do |product|
+        .col-sm-4.product
+          h4 = product.name
+          p
+            ' Brand:
+            = product.brand
+          p
+            ' Sku:
+            = product.sku
+          p
+            ' Price:
+            = product.price
+          p
+            button.btn.btn-primary data-target="#producShowModal" data-toggle="modal" data-id="#{product.id}" type="button"
+              | View details »
 br
-
+= render 'products/show_modal'
 = link_to 'New Product', new_product_path

@@ -1,0 +1,26 @@
+/! Modal
+#producShowModal.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+        h4#myModalLabel.modal-title Information about product
+      .modal-body
+        .product
+          h4.name
+          ul.list-group
+            li.list-group-item
+              span.badge.brand
+              | Brand:
+            li.list-group-item
+              span.badge.sku
+              | Sku:
+            li.list-group-item
+              span.badge.price
+              | Price:
+            li.list-group-item
+              p.desc
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Close
+        button.btn.btn-primary type="button"  Save changes

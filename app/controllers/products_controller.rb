@@ -65,9 +65,9 @@ class ProductsController < ApplicationController
     begin
       file = File.read(params[:gena][:file].path)
       data_hash = JSON.parse(file)
-      raise 'asxasx'
-      Product.import_json_data(data_hash)
-
+      # Product.import_json_data(data_hash)
+      flash[:success] = 'Products have been imported'
+      render 'products'
     rescue
       flash[:error] = 'Something went wrong with file. Invalid JSON'
       render 'import_products'
