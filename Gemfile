@@ -57,5 +57,13 @@ group :development do
   gem 'pry'
 end
 
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
+  gem 'fuubar'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
