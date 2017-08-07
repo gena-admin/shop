@@ -26,7 +26,24 @@ class Cart
     @cart.values.reduce(:+)
   end
 
+  def total_amount
+    items_for_cart.map{|el| el[:price] * el[:quantity]}.reduce(:+)
+  end
+
   def items_for_order
+    @cart.map do |key, value|
+      {
+        product_id: key,
+        quantity:  value
+      }
+    end
+  end
+
+  def clear
+    @session[:cart] = nil
+  end
+
+  def items_for_cart
     @cart.map do |key, value|
       product = Product.find_by_id(key)
       if product.present?
