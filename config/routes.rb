@@ -23,4 +23,12 @@ Rails.application.routes.draw do
       post :make_order
     end
   end
+
+  namespace :api do
+    namespace :v1, defaults: {format: :json} do
+      resources :products, only: [:index, :show, :create] do
+        put :update_price
+      end
+    end
+  end
 end
