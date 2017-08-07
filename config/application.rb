@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module Shop
   class Application < Rails::Application
+    config.enable_dependency_loading = true
+    config.eager_load_paths << Rails.root.join('lib')
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 

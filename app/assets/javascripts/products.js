@@ -25,6 +25,7 @@ $( document ).ready(function() {
                 modal.find('.model').text(response['model']);
                 modal.find('.price').text(response['price']);
                 modal.find('.desc').text(response['desc']);
+                modal.find('.buy-button').data("id", response['id']);
 
 
                 // if(response && response.status == 200) {
@@ -36,5 +37,20 @@ $( document ).ready(function() {
         });
 
 
+    });
+
+    $('.buy-button').click(function(){
+        $.ajax({
+            type: 'put',
+            url: '/products/' + $(this).data('id') + '/add_to_cart/',
+            dataType: "json",
+            error: function(response) {
+                console.log('Error');
+            },
+            success: function(response) {
+                console.log('total_number: ' + response['total_number']);
+                $('.cart_items').text(response['total_number']);
+            }
+        });
     });
 });

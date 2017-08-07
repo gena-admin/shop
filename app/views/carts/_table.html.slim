@@ -1,0 +1,34 @@
+#cart-place
+  table.table.text-center
+    thead
+      tr
+        th.text-center name
+        th.text-center brand
+        th.text-center model
+        th.text-center sku
+        th.text-center price
+        th.text-center quantity
+        th.text-center total_item_price
+        th.text-center +
+    tbody
+      - @total_price = 0
+      - @items.each do |item|
+        - @total_price += item[:total_item_price]
+        tr
+          td = item[:name]
+          td = item[:brand]
+          td = item[:model]
+          td = item[:sku]
+          td = item[:price]
+          td = item[:quantity]
+          td = item[:total_item_price]
+          td
+            = link_to '-', remove_item_carts_path(product_id: item[:id]), remote: true, method: 'put'
+          td
+            = link_to '+', add_item_carts_path(product_id: item[:id]), remote: true, method: 'put'
+          td
+            = link_to 'Remove product', remove_product_carts_path(product_id: item[:id]), remote: true, method: 'put'
+      tr#total-items-price
+        td colspan='6' Total price for all items:
+        td = @total_price
+
