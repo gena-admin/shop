@@ -10,33 +10,37 @@ class CartsController < ApplicationController
     @cart.add_item_to_cart(params[:product_id])
     @items = @cart.items_for_cart
     render 'index'
+    authorize! :add_item, Cart
   end
 
   def remove_item
     @cart.remove_item_from_cart(params[:product_id])
     @items = @cart.items_for_cart
     render 'index'
+    authorize! :remove_item, Cart
   end
 
   def remove_product
     @cart.remove_product_from_cart(params[:product_id])
     @items = @cart.items_for_cart
     render 'index'
+    authorize! :remove_product, Cart
   end
 
   def make_order
-      @items = @cart.items_for_order
-      order = Order.new(user: current_user, amount: @cart.total_amount, items_attributes: @items)
+    @items = @cart.items_for_order
+    order = Order.new(user: current_user, amount: @cart.total_amount, items_attributes: @items)
 
-      if order.save
-        flash[:success] = 'Order has been created successfully'
-        @cart.clear
-        redirect_to root_path
-      else
-        flash[:error] = 'Something went wrong'
-        redirect_to root_path
-      end
+    if order.save
+      flash[:success] = 'Order has been created successfully'
+      @cart.clear
+      redirect_to root_path
+    else
+      flash[:error] = 'Something went wrong'
+      redirect_to root_path
     end
+    authorize! :make_order, Cart
+  end
 
 
   private

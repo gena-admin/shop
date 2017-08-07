@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  load_and_authorize_resource except: [:add_to_cart]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
@@ -7,9 +8,9 @@ class ProductsController < ApplicationController
   end
 
   # # GET /products/1
-  #
-  # def show
-  # end
+
+  def show
+  end
 
   # GET /products/new
   def new
@@ -23,7 +24,7 @@ class ProductsController < ApplicationController
   # POST /products
   def create
     @product = Product.new(product_params)
-
+    require 'pry'; binding.pry
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -33,35 +34,12 @@ class ProductsController < ApplicationController
     end
   end
 
-  # # PATCH/PUT /products/1
-  # # PATCH/PUT /products/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @product.update(product_params)
-  #       format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @product }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @product.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  # # DELETE /products/1
-  # # DELETE /products/1.json
-  # def destroy
-  #   @product.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
-
   def process_import
     begin
+      binding.pry
       file = File.read(params[:gena][:file].path)
       data_hash = JSON.parse(file)
-      # Product.import_json_data(data_hash)
+      Product.import_json_data(data_hash)
       flash[:success] = 'Products have been imported'
       render 'products'
     rescue
@@ -78,6 +56,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.json { render json: { total_number: cart.total_items }, status: :ok }
     end
+    authorize! :add_to_cart, Cart
   end
 
   private

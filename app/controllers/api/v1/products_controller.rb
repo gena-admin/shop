@@ -3,6 +3,7 @@ class  Api::V1::ProductsController < Api::V1::ApiController
 
   # GET /products
   def index
+    binding.pry
     @products = Product.all
   end
 

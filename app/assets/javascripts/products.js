@@ -45,6 +45,7 @@ $( document ).ready(function() {
             url: '/products/' + $(this).data('id') + '/add_to_cart/',
             dataType: "json",
             error: function(response) {
+                console.log(response);
                 console.log('Error');
             },
             success: function(response) {
