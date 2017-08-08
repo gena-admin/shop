@@ -36,7 +36,6 @@ class ProductsController < ApplicationController
 
   def process_import
     begin
-      binding.pry
       file = File.read(params[:gena][:file].path)
       data_hash = JSON.parse(file)
       Product.import_json_data(data_hash)
