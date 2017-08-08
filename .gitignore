@@ -20,6 +20,7 @@
 /.idea
 /config/database.yml
 /node_modules
+/coverage
 /yarn-error.log
 
 .byebug_history
