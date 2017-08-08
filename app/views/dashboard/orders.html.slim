@@ -1,0 +1,10 @@
+table.table.text-center
+  thead
+    tr
+      th.text-center email
+      th.text-center number of Orders
+  tbody
+    - @customers.each do |customer|
+      tr
+        td = customer&.email
+        td = customer&.orders_count

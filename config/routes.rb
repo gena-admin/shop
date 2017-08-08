@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   root to: 'dashboard#index'
 
   resources :dashboard, only: [:index] do
-    get :customers, on: :collection
+    collection do
+      get :customers
+      get :orders
+    end
   end
 
   resources :carts, only: [:index] do

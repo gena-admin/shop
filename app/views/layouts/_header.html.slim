@@ -20,6 +20,7 @@ nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
         - if can? :manage, :all
           li = link_to 'Add new product', new_product_path
           li = link_to 'Customers', customers_dashboard_index_path
+          li = link_to 'Orders', orders_dashboard_index_path
           li = link_to 'Import from JSON file', import_products_products_path
         li = link_to carts_path do
              ' Cart

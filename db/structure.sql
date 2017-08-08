@@ -72,6 +72,18 @@ ALTER SEQUENCE items_id_seq OWNED BY items.id;
 
 
 --
+-- Name: number_of_orders_for_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE number_of_orders_for_users (
+    email character varying,
+    orders_count bigint
+);
+
+ALTER TABLE ONLY number_of_orders_for_users REPLICA IDENTITY NOTHING;
+
+
+--
 -- Name: orders; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -280,6 +292,20 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 
 
 --
+-- Name: _RETURN; Type: RULE; Schema: public; Owner: -
+--
+
+CREATE RULE "_RETURN" AS
+    ON SELECT TO number_of_orders_for_users DO INSTEAD  SELECT users.email,
+    count(orders.user_id) AS orders_count
+   FROM (users
+     JOIN orders ON ((orders.user_id = users.id)))
+  WHERE (users.role = 1)
+  GROUP BY users.id
+  ORDER BY users.id;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -289,6 +315,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170804124546'),
 ('20170804135715'),
 ('20170807135549'),
-('20170807135756');
+('20170807135756'),
+('20170808215956');
 
 
