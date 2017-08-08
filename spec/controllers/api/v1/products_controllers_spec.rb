@@ -1,24 +1,26 @@
 require 'rails_helper'
 
 describe Api::V1::ProductsController, type: :controller do
+  render_views
   let(:customer) { FactoryGirl.create(:user, role: 'customer') }
   let!(:product){ FactoryGirl.create(:product) }
+  subject { JSON.parse(response.body) }
 
   before do
-    allow(controller).to receive(:authenticate_user!)
-    allow(controller).to receive(:current_user).and_return(customer)
+    2.times { FactoryGirl.create(:product) }
   end
 
   describe 'GET index' do
     it 'returns http success' do
-      get 'index'
+      get 'index', { format: :json }
       expect(response).to be_success
     end
 
     it 'should return all Products' do
 
       get :index, {format: :json}
-      binding.pry
+
+      is_expected.to eql('as')
     end
   end
 
