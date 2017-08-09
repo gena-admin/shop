@@ -17,3 +17,8 @@ $ bundle exec rspec
 ### Default site administrator.
 email: admin@shop.ua    
 password: password
+
+### Generate RDoc documentation
+```
+$ bundle exec rake rdoc
+```

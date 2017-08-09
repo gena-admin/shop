@@ -14,10 +14,12 @@ class User < ApplicationRecord
 
   private
 
+  # Sent welcome email for customers
   def send_welcome_mail
     ApplicationMailer.send_new_user_message(self).deliver if self.customer?
   end
 
+  # Set default user role
   def set_role
     self.role = 1 if self.guest?
   end
