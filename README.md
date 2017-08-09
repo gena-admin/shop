@@ -1,6 +1,10 @@
-# README
+# Shop
 
-# Shop is a simple e-commerce type web application
+# Here is a simple e-commerce type web application
+
+##### Deployed to: shop-ua.herokuapp.com
+
+### How to start
 
 ```
 $ rvm use 2.4.1@shop --create
