@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Shop is a simple e-commerce type web application
 
-Things you may want to cover:
+```
+$ rvm use 2.4.1@shop --create
+$ bundle install
+$ rake db:create db:migrate db:seed
+$ rails s
+```
 
-* Ruby version
+### Run test
+```
+$ bundle exec rspec
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Default site administrator.
+email: admin@shop.ua    
+password: password
