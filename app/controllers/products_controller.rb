@@ -35,13 +35,14 @@ class ProductsController < ApplicationController
 
   def process_import
     begin
-      file = File.read(params[:gena][:file].path)
+      file = File.read(params[:products][:file].path)
       data_hash = JSON.parse(file)
-      Product.import_json_data(data_hash)
+      Product.transaction { Product.create(data_hash['products']) }
+
       flash[:success] = 'Products have been imported'
-      render 'products'
-    rescue
-      flash[:error] = 'Something went wrong with file. Invalid JSON'
+      redirect_to products_path
+    rescue Exception => e
+      flash[:error] = e.message
       render 'import_products'
     end
   end
@@ -54,7 +55,6 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.json { render json: { total_number: cart.total_items }, status: :ok }
     end
-    authorize! :add_to_cart, Cart
   end
 
   private

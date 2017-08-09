@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :authenticate_user!, only: [:make_order]
   before_action :set_cart, only: [:add_item, :remove_item, :remove_product, :index, :make_order]
 
   def index
@@ -10,21 +11,18 @@ class CartsController < ApplicationController
     @cart.add_item_to_cart(params[:product_id])
     @items = @cart.items_for_cart
     render 'index'
-    authorize! :add_item, Cart
   end
 
   def remove_item
     @cart.remove_item_from_cart(params[:product_id])
     @items = @cart.items_for_cart
     render 'index'
-    authorize! :remove_item, Cart
   end
 
   def remove_product
     @cart.remove_product_from_cart(params[:product_id])
     @items = @cart.items_for_cart
     render 'index'
-    authorize! :remove_product, Cart
   end
 
   def make_order

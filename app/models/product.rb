@@ -1,5 +1,4 @@
 class Product < ApplicationRecord
-  include ProductImporter
   has_many :items
 
   validates :name, presence: true
