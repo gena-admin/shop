@@ -41,8 +41,8 @@ class ProductsController < ApplicationController
 
       flash[:success] = 'Products have been imported'
       redirect_to products_path
-    rescue Exception => e
-      flash[:error] = e.message
+    rescue
+      flash[:error] = 'Something went wrong'
       render 'import_products'
     end
   end

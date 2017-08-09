@@ -4,7 +4,6 @@ class CreateDbView < ActiveRecord::Migration[5.1]
           SELECT users.email, COUNT("orders"."user_id") AS orders_count
           FROM "users"
           INNER JOIN "orders" ON "orders"."user_id" = "users"."id"
-          WHERE "users"."role" = '1'
           GROUP BY users.id
           ORDER BY users.id
       )

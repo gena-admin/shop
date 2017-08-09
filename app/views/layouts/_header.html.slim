@@ -13,7 +13,7 @@ nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
         li = link_to carts_path do
              ' Cart
              span.badge.brand.cart_items
-               = Cart.new(session).total_items
+               = cart_total_items
         - if user_signed_in?
           li.dropdown
             a.dropdown-toggle href="#" data-toggle="dropdown"

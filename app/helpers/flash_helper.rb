@@ -6,7 +6,6 @@ module FlashHelper
     flash.each do |type, message|
       next if message.blank?
 
-
       next unless ALERT_TYPES.include?(type)
 
       type = 'info'   if type == 'notice'
