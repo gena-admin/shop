@@ -2,7 +2,7 @@
 
 # Here is a simple e-commerce type web application
 
-##### Deployed to: shop-ua.herokuapp.com
+##### Deployed for testing to: http://shop-ua.herokuapp.com
 
 ### How to start
 
